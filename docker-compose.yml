@@ -15,16 +15,16 @@ services:
     networks:
     - tracing-demo
 
-  # jaeger:
-  #   container_name: jaeger
-  #   image: jaegertracing/all-in-one:latest
-  #   hostname: jaeger
-  #   ports:
-  #     - 5778:5778
-  #     - 16686:16686
-  #     - 14268:14268
-  #   networks:
-  #   - acme
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    hostname: jaeger
+    ports:
+      - 5778:5778
+      - 16686:16686
+      - 14268:14268
+    networks:
+    - tracing-demo
 
   # prometheus:
   #   container_name: prometheus

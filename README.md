@@ -15,7 +15,7 @@ Repository for demostrating how to enable tracing in a Spring Boot microservice.
 docker-compose up -d
 
 # Once the everything is running, start application using Maven
-mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DDB_HOST=localhost -DDB_PORT=5432 -DDB_NAME=foo-db -DDB_USER=develop -DDB_PASS=develop"
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DDB_HOST=localhost -DDB_PORT=5432 -DDB_NAME=foo-db -DDB_USER=develop -DDB_PASS=develop -Dspring.profiles.active=local"
 
 # Validate
 curl localhost:8080/api/foo | jq
