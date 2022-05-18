@@ -10,18 +10,11 @@ Repository for demostrating how to enable tracing in a Spring Boot microservice.
 
 ## Run locally
 
-*Commands using podman, replace with your container machine*
-
 ```sh
-# Start database
-podman run -d --name foo-db \
-  -e POSTGRES_USER=develop \
-  -e POSTGRES_PASSWORD=develop \
-  -e POSTGRES_DB=foo-db \
-  -p 5432:5432 \
-  postgres:10.5
+# Start environment (postgres db)
+docker-compose up -d
 
-# Once the Database is running, start application using Maven
+# Once the everything is running, start application using Maven
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DDB_HOST=localhost -DDB_PORT=5432 -DDB_NAME=foo-db -DDB_USER=develop -DDB_PASS=develop"
 
 # Validate
