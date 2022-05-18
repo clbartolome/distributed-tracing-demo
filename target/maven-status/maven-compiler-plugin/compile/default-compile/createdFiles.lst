@@ -1,0 +1,6 @@
+com/redhat/foo/controller/FooController.class
+com/redhat/foo/FooApplication.class
+com/redhat/foo/utils/Delay.class
+com/redhat/foo/repository/FooRepository.class
+com/redhat/foo/entity/Foo.class
+com/redhat/foo/service/FooService.class
