@@ -5,6 +5,7 @@ import java.util.List;
 import com.redhat.foo.entity.Foo;
 import com.redhat.foo.repository.FooRepository;
 import com.redhat.foo.utils.Delay;
+import com.redhat.foo.utils.tracing.tracing.Traceable;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class FooService {
     this.FooRepository = FooRepository;
   }
 
+  @Traceable
   public List<Foo> getAll(){
     Delay.execute();
     return FooRepository.findAll();    
