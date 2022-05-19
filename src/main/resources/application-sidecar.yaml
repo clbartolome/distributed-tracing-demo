@@ -14,3 +14,4 @@ spring:
 opentracing:
   jaeger:
     log-spans: true
+    service-name: distributed-tracing-demo-sidecar
