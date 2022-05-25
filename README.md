@@ -78,6 +78,21 @@ oc logs -f bc/foo-app -n app-tracing-demo
 oc delete -k deploy/overlays/simple -n app-tracing-demo
 ```
 
+### Sidecar version
+
+<span style="color:red">!!!</span> Remove other installed version in this namespace
+
+```sh
+# Deploy
+oc apply -k deploy/overlays/sidecar -n app-tracing-demo
+
+# Wait until build finish
+oc logs -f bc/foo-app -n app-tracing-demo
+
+# Delete
+oc delete -k deploy/overlays/sidecar -n app-tracing-demo
+```
+
 See 'Review Traces' section to test deployment
 
 ### Review Traces
