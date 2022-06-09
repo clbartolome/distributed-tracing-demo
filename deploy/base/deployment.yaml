@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo-app
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","name":"foo-db"}]'
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+    spec: 
+      containers:
+      - name: foo-app
+        envFrom: 
+        - configMapRef:
+            name: foo-app-configuration
+        - secretRef:
+            name: foo-app-secured-configuration
+        image: 'image-registry.openshift-image-registry.svc:5000/app-tracing-demo/foo-app:latest'
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
