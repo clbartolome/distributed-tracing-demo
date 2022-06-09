@@ -14,36 +14,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FooService {
+public class FooServiceAux {
+
 
   @Autowired
   Tracer tracer;
-  
-  @Autowired
-  FooServiceAux aux;
 
   private final FooRepository FooRepository;
 
-  public FooService(FooRepository FooRepository) {
+  public FooServiceAux(FooRepository FooRepository) {
     this.FooRepository = FooRepository;
   }
 
   @Traceable
-  public List<Foo> getAll(){
+  public List<Foo> getAllAux(){
     Delay.execute();
     FooRepository.findAll();
-    return this.callRepository();    
+    return this.callRepositoryAux();    
   }
 
-  private List<Foo> callRepository() {
-    Span newSpan = tracer.buildSpan("FooService/ callRepository").asChildOf(tracer.activeSpan()).start();
+  private List<Foo> callRepositoryAux() {
+    Span newSpan = tracer.buildSpan("FooServiceAux/ callRepositoryAux").asChildOf(tracer.activeSpan()).start();
 
     Delay.execute();
-    List<Foo> list = this.aux.getAllAux();
+    List<Foo> list = this.FooRepository.findAll();
     
     newSpan.finish();
     return list;
-
   }
   
 }
